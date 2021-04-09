@@ -1,0 +1,73 @@
+{% extends "index.twig" %} {% block title %} Ticketsystem {% endblock %} {%
+block content %} {% if IsUser %}
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">Ticket System</div>
+      <div class="row mt-4 mb-3">
+        <div class="col">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/support/ticketsystem">Open Tickets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/support/ticketsystem/close"
+                >Closed Tickets</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/support/ticketsystem/add"
+                >New Ticket</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ticket Title</th>
+                <th scope="col">Ticket Processor</th>
+                <th scope="col">Attachment</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for ticket in tickets %}
+              <tr>
+                <td>{{ loop.index }}</td>
+                <td>
+                  <b>{{ ticket.ticket_title }}</b>
+                </td>
+                <td>
+                  {% if ticket.ticket_processor == 'ALL' %} No assignment {%
+                  else %}
+                  {{ ticket.ticket_processor }}
+                  {% endif %}
+                </td>
+                <td>
+                  {% if not ticket.ticket_attachment == '' %}
+                  <i class="fas fa-file-image"></i>
+                  {% else %} No Attachments {% endif %}
+                </td>
+                <td>
+                  <a
+                    href="/support/ticketsystem/answer/{{ ticket.ticket_uuid }}"
+                    class="btn btn-sm btn-primary"
+                    >Answer</a
+                  >
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %} {% include "extensions/not_loggedIn.twig" %} {% endif %} {% endblock
+%}

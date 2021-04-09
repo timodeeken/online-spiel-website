@@ -1,0 +1,32 @@
+{% extends "index.twig" %} {% block title %} Downloads {% endblock %} {% block
+content %}
+<div class="col">
+  <div class="row justify-content-center">
+    {% for download in downloads %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-title">
+            {{ download.download_title }}
+          </div>
+          <p class="card-text text-small">
+            This download is hosted on
+            <b>{{ download.download_host | Host }}</b>
+          </p>
+          <p class="card-text text-small">
+            Download size: <b>{{ download.download_size }}</b>
+          </p>
+          <a
+            href="{{ download.download_link }}"
+            target="_blank"
+            class="btn btn-sm btn-primary"
+            >Download</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

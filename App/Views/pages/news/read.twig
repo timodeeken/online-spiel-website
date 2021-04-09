@@ -1,0 +1,20 @@
+{% extends "index.twig" %} {% block title %} Read News {% endblock %} {% block
+content %}
+<div class="col">
+    <div class="card">
+        <div class="card-body">
+            {% for news in newsArray %}
+            <p class="news-title">{{ news.news_title }}</p>
+            <p>{{ news.news_text|raw }}</p>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %} {% block footer %}
+
+<script>
+      //const dataTable = new simpleDatatables.DataTable("#ranking")
+</script>
+{% endblock %}

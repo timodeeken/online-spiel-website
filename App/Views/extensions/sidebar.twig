@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col">
+        <div class="card card-body">
+            {% if IsUser %}
+                <div class="card-title">Welcome, {{ Username }}</div>
+                <ul class="list-group list-group-flush mt-4">
+                    {% if PanelView %}
+                    <li class="list-group-item"><a href="/panel" class="text-danger">Dashboard</a></li>
+                    {% endif %}
+                    <li class="list-group-item"><a href="/accountpanel">Accountpanel</a></li>
+                    <li class="list-group-item"><a href="/vote">Vote</a></li>
+                    <li class="list-group-item"><a href="/shop">Shop</a></li>
+                    <li class="list-group-item"><a href="/logout" class="text-danger">Logout</a></li>
+                  </ul>
+                {% else %}
+                <div class="card-title">
+                    Login
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <form method="POST" action="/login">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Account ID</label>
+                                <input type="text" class="form-control" id="username" name="username" minlength="6" maxlength="16">
+                              </div>
+                              <div class="mb-3">
+                                  <label for="password" class="form-label">Password</label>
+                                  <input type="password" class="form-control" name="password">
+                                </div>
+                            <input type="hidden" name="recaptcha_response_login" id="recaptchaResponse">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col">
+        <div class="card card-body">
+            <div class="card-title">
+                Informationen
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          EXP
+                          <span class="badge bg-primary rounded-pill">server_state</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          Online
+                          <span class="badge bg-primary rounded-pill">0</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          Peak
+                          <span class="badge bg-primary rounded-pill">0</span>
+                        </li>
+                      </ul>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          EXP
+                          <span class="badge bg-primary rounded-pill">{{'exp'|Sidebar}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          Drop
+                          <span class="badge bg-primary rounded-pill">{{'drop'|Sidebar}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          Penya
+                          <span class="badge bg-primary rounded-pill">{{'penya'|Sidebar}}</span>
+                        </li>
+                      </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

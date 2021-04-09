@@ -1,0 +1,33 @@
+website:
+    title: AquaCMS
+    https: true
+    view: App/Views
+    controller: App/Controllers
+    routes: Routes
+    publickey: 6LeX8ygaAAAAAP_ljR9QCz0DSg5xd2v7YYC7S00B
+    privatekey: 6LeX8ygaAAAAALdnrBylN0N-4iE1Q67Skah1Zfgi
+    votereward: 10
+    rates: { exp: 500, penya: 500, drop: 500 }
+    sidebar: { user_online: true, user_peak: true }
+database:
+    server: .\SQLEXPRESS
+    username: sa
+    password: 'Tr0p1c4lIsl4nd!&SQL11.12.20'
+    account_dbf: ACCOUNT_DBF
+    character_dbf: CHARACTER_01_DBF
+    logging_dbf: LOGGING_01_DBF
+    website_dbf: WEB_DBF
+    item_dbf: ITEM_DBF
+server:
+    salt: kikugalanet
+    ip: 127.0.0.1
+    port: 5600
+shop:
+    param1: 0
+    param2: 0
+security:
+    admin: Z
+    gamemaster: G
+    user: F
+0:
+    security.user: H

@@ -1,0 +1,36 @@
+{% extends "index.twig" %} {% block title %} Characterview - {% endblock %} {%
+block content %} {% include "extensions/notification.twig" %}
+<div class="col">
+  <div class="card card-body">
+    <div class="card-title">Characterview -</div>
+    <div class="row">
+      {% for row in array %}
+      <div class="col-4">
+        <div class="card">
+          <div class="card-title">
+            {{ row.m_szName }} <small>Lvl. {{ row.m_nLevel }}</small>
+          </div>
+          <div class="card-body">
+            <p>Class. {{ row.m_nJob | flyff_class }}</p>
+            <p>STR. {{ row.m_nStr }}</p>
+            <p>STA. {{ row.m_nSta }}</p>
+            <p>DEX. {{ row.m_nDex }}</p>
+            <p>INT. {{ row.m_nInt }}</p>
+            {% if row.MultiServer == 1 %}
+            <p>Status: <span class="badge bg-success">Online</span></p>
+            {% else %}
+            <p>Status: <span class="badge bg-danger">Offline</span></p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <pre>
+            {{ dump(array) }}
+          </pre
+      >
+    </div>
+  </div>
+</div>
+
+{% endblock %}

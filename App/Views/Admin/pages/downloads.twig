@@ -1,0 +1,106 @@
+{% extends "Admin/index.twig" %}{% block title %}
+Dashboard
+{% endblock %}
+{% block content %}
+    <div class="row mb-2 mb-xl-3">
+        <div class="col-auto d-none d-sm-block">
+            <h4><strong>Downloads</strong> Dashboard</h4>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="card card-body">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-info" href="#" data-bs-toggle="modal"
+                            data-bs-target="#AddDownloadModal">Add Download</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for download in downloads %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            {{ download.download_title }}
+                        </div>
+                        <p class="card-text">
+                            This download is hosted on <b>{{ download.download_host|Host }}</b>
+                        </p>
+                        <p class="card-text">
+                            Download size: <b>{{ download.download_size }}</b>
+                        </p>
+                        <p class="card-text">
+                            <code>{{download.download_link}}</code>
+                        </p>
+                        <a href="/panel/downloads/delete/{{download.download_uuid}}" class="btn btn-sm btn-danger">Remove</a>
+                        {% if download.state == 1 %}
+                        <a href="/panel/downloads/disable/{{download.download_uuid}}" class="btn btn-sm btn-warning">Disable</a>  
+                        {% else %}
+                        <a href="/panel/downloads/active/{{download.download_uuid}}" class="btn btn-sm btn-success">Active</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="modal fade text-left show" id="AddDownloadModal" tabindex="-1" role="dialog" aria-labelledby="AddDownloadModalLabel1" aria-modal="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AddDownloadModalLabel1">Add News</h5>
+                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <form action="/panel/downloads" method="post">
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="download_title">Download Title</label>
+                                <input type="text" class="form-control" name="download_title" id="download_title" required >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="download_size">Download Size</label>
+                                <input type="text" class="form-control" name="download_size" id="download_size" required >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="download_link">Download Link</label>
+                                <input type="text" class="form-control" name="download_link" id="download_link" required >
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="download_host">Download Host</label>
+                                <select class="form-control" name="download_host" id="download_host">
+                                    <option value="1">Mega.nz</option>
+                                    <option value="2">Localhost</option>
+                                    <option value="3">Google Drive</option>
+                                    <option value="4">File-Upload.net</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Accept</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

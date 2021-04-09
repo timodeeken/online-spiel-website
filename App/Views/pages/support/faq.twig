@@ -1,0 +1,46 @@
+{% extends "index.twig" %}
+{% block title %}
+    FAQ's
+{% endblock %}
+
+{% block content %}
+   <div class="col">
+       <div class="card">
+           <div class="card-body">
+               <div class="card-title mb-4">
+                   FAQ's 
+               </div>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                {% for faq in faqs %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-heading{{loop.index}}">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{loop.index}}" aria-expanded="false" aria-controls="flush-collapse{{loop.index}}">
+                        <i class="fas fa-question-circle mr-2"></i> {{faq.faq_question}}
+                      </button>
+                    </h2>
+                    <div id="flush-collapse{{loop.index}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{loop.index}}" data-bs-parent="#accordionFlushExample">
+                      <div class="accordion-body">
+                        <blockquote class="d-flex">
+                            <i class="fas fa-reply"></i>
+                            <div class="d-block">
+                                {{faq.faq_answer|markdown_to_html}}
+                            </div>
+                        </blockquote>
+                            
+                            <div class="accordion-footer">
+                                <p>The question was answered by {{faq.author|capitalize}} an {{faq_create_date|date("d. M Y")}}</p>
+                            </div>                        
+                        </div>
+                    </div>
+                  </div>
+                  {% else %}
+                  <div class="alert alert-danger">
+                      <b>Keinen Eintrag gefunden</b><br>
+                      
+                  </div>
+                {% endfor %}
+              </div>
+           </div>
+       </div>
+   </div>
+{% endblock %}

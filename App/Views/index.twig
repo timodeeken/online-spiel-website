@@ -1,0 +1,156 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="/assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/assets/css/custom.css" />
+  <link rel="shortcut icon" href="/assets/images/Discord-Logo-1.png" type="image/x-icon" />
+  <link rel="stylesheet" href="/assets/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css" />
+  <title>{% block title %}{% endblock %} | {{Sitename}}</title>
+</head>
+
+<body>
+  {% include "extensions/navigation.twig" %}
+  <header>
+    <div class="logo">Atlantis <span class="flyff">FlyFF</span></div>
+  </header>
+  <main id="main" class="main">
+    <div class="container-sm">
+      <div class="row mb-5">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-1 info-label">
+                  Peak: <span class="peak">158</span>
+                </div>
+                <div class="col info-label">
+                  time:
+                  <span class="time" id="time">{{'now'|date('H:i', "Europe/Berlin")}}</span>
+                </div>
+                <div class="col info-label justify-content-end align-content-end">
+                  <div class="state" style="text-align: end; padding-right: 0.5rem">
+                    Status
+                    {% if ServerStatus %}
+                    <div class="status online">On</div>
+                    {% else %}
+                    <div class="status offline">Off</div>
+                    {% endif %}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3 justify-content-center">
+        {% block content %} {% endblock %}
+      </div>
+      <div class="row">
+        <div class="placeholder"></div>
+      </div>
+    </div>
+  </main>
+  <footer class="pt-4 mt-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md">
+          {{Sitename}}
+          <small class="d-block text-muted">© {{"now"|date('Y')}}</small>
+          <small class="d-block mb-3 text-muted">Coding ©
+            <a href="https://feature-design.de/" target="_blank">FeatureDesign</a></small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Links</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="link-secondary" href="/">Home</a></li>
+            <li><a class="link-secondary" href="/register">Register</a></li>
+            <li><a class="link-secondary" href="/ranking">Ranking</a></li>
+            <li><a class="link-secondary" href="/rules">Rules</a></li>
+            <li><a class="link-secondary" href="/downloads">Downloads</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Help Center</h5>
+          <ul class="list-unstyled text-small">
+            <li>
+              <a class="link-secondary" href="/support">Support System</a>
+            </li>
+            <li>
+              <a class="link-secondary" href="/support/team">Team - List</a>
+            </li>
+            <li><a class="link-secondary" href="/contact">Contact</a></li>
+            <li><a class="link-secondary" href="/imprint">Imprint</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Backlinks</h5>
+          <ul class="list-unstyled text-small">
+            <li>
+              <a class="link-secondary" href="https://elitepvpers.com" target="_blank">Elitepvpers</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="LoginModalLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <form action="/login" method="post">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="username" class="form-label">Account ID</label>
+              <input type="text" class="form-control" id="username" name="username" minlength="6" maxlength="16" />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" name="password" />
+            </div>
+            <input type="hidden" name="recaptcha_response_login" id="recaptchaResponse" />
+          </div>
+          <div class="modal-footer">
+            <input type="hidden" name="recaptcha_response" id="recaptchaResponse" />
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-success">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="/assets/js/popper.js"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/js/custom.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render={{
+        SiteKey
+      }}"></script>
+  <script>
+    grecaptcha.ready(function () {
+      grecaptcha
+        .execute("{{ SiteKey }}", {
+          action: "/",
+        })
+        .then(function (token) {
+          var recaptchaResponse = document.getElementById(
+            "recaptchaResponse"
+          );
+          recaptchaResponse.value = token;
+        });
+    });
+  </script>
+
+  {% block footer %} {% endblock %}
+</body>
+
+</html>

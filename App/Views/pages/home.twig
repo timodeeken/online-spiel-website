@@ -1,0 +1,29 @@
+{% extends "index.twig" %} {% block title %} Home {% endblock %} {% block
+content %} {% include "extensions/notification.twig" %}
+<div class="row">
+  <div class="placeholder"></div>
+</div>
+<div class="row justify-content-center">
+  {% for news in NewsArray %}
+  <div class="col-sm-3 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <p class="news posted">
+          Posted by: <b>{{ news.author | capitalize }}</b>
+        </p>
+        <p class="news text">
+          {{ news.news_text|shorthtml }}
+        </p>
+        <p class="news time">
+          {{news.create_date|date("m/d/Y - H:i")}}
+        </p>
+      </div>
+      <div class="card-footer news-footer">
+        <a href="/news/read/{{news.news_uuid}}">Read More</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

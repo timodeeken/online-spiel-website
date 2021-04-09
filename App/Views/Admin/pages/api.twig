@@ -1,0 +1,329 @@
+{% extends "Admin/index.twig" %}{% block title %}
+API Config
+{% endblock %}
+{% block content %}
+{% if IsAdmin %}
+<div class="row mb-2 mb-xl-3">
+    <div class="col-auto d-none d-sm-block">
+        <h3><strong>API</strong> Konfiguration</h3>
+    </div>
+</div>
+<form action="/panel/api-config" method="post">
+
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="website-api-tab" data-bs-toggle="pill" href="#website-api"
+                            role="tab" aria-controls="website-api" aria-selected="false"><i class="fas fa-server"></i>
+                            Website</a>
+                        <a class="nav-link" id="database-api-tab" data-bs-toggle="pill" href="#database-api" role="tab"
+                            aria-controls="website-api" aria-selected="false"><i class="fas fa-database"></i>
+                            Database</a>
+                        <a class="nav-link" id="shop-api-tab" data-bs-toggle="pill" href="#shop-api" role="tab"
+                            aria-controls="website-api" aria-selected="false"><i class="fas fa-shopping-bag"></i>
+                            Shop</a>
+                        <a class="nav-link" id="shop-api-tab" data-bs-toggle="pill" href="#security-api" role="tab"
+                            aria-controls="security-api" aria-selected="false"><i class="fas fa-shield-alt"></i>
+                            Security</a>
+                        <a class="nav-link" id="vote-api-tab" data-bs-toggle="pill" href="#vote-api" role="tab"
+                            aria-controls="vote-api" aria-selected="false"><i class="fas fa-vote-yea"></i> Vote</a>
+                        <a class="nav-link" id="discord-api-tab" data-bs-toggle="pill" href="#discord-api" role="tab"
+                            aria-controls="disocrd-api" aria-selected="false"><i class="fab fa-discord"></i> Discord</a>
+                        <a class="nav-link" id="account-api-tab" data-bs-toggle="pill" href="#account-api" role="tab"
+                            aria-controls="account-api" aria-selected="false"><i class="fas fa-user"></i> Account</a>
+                        <button type="submit" class="nav-link btn btn-danger mt-5">Speichern</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade active show" id="website-api" role="tabpanel"
+                            aria-labelledby="website-api-tab">
+                            <div class="card-title">
+                                Website
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="title">Title</label>
+                                    <input type="text" class="form-control" id="title" name="title"
+                                        placeholder="{{ 'website.title'|GetConfig }}"
+                                        value="{{ 'website.title'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="https">HTTPS</label>
+                                    <input type="text" class="form-control" id="https" name="https" placeholder="true"
+                                        value="true" readonly>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <label for="view">View</label>
+                                    <input type="text" class="form-control" id="view" name="view"
+                                        placeholder="{{ 'website.view'|GetConfig }}"
+                                        value="{{ 'website.view'|GetConfig }}" readonly>
+                                </div>
+                                <div class="col">
+                                    <label for="controller">Controller</label>
+                                    <input type="text" class="form-control" id="controller" name="controller"
+                                        placeholder="{{ 'website.controller'|GetConfig }}"
+                                        value="{{ 'website.controller'|GetConfig }}" readonly>
+                                </div>
+                                <div class="col">
+                                    <label for="routes">Routes</label>
+                                    <input type="text" class="form-control" id="routes" name="routes"
+                                        placeholder="{{ 'website.routes'|GetConfig }}"
+                                        value="{{ 'website.routes'|GetConfig }}" readonly>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-title">
+                                Rates
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="exp">EXP</label>
+                                    <input type="text" class="form-control" id="exp" name="exp"
+                                        placeholder="{{ 'website.rates.exp'|GetConfig }}"
+                                        value="{{ 'website.rates.exp'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="drop">DROP</label>
+                                    <input type="text" class="form-control" id="drop" name="drop"
+                                        placeholder="{{ 'website.rates.drop'|GetConfig }}"
+                                        value="{{ 'website.rates.drop'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="penya">PENYA</label>
+                                    <input type="text" class="form-control" id="penya" name="penya"
+                                        placeholder="{{ 'website.rates.penya'|GetConfig }}"
+                                        value="{{ 'website.rates.penya'|GetConfig }}">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-title">
+                                Sidebar
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="user_online">User Online</label>
+                                    <input type="text" class="form-control" id="user_online" name="user_online"
+                                        placeholder="true" value="true" readonly>
+                                </div>
+                                <div class="col">
+                                    <label for="user_online">User Peak</label>
+                                    <input type="text" class="form-control" id="user_online" name="user_online"
+                                        placeholder="true" value="true" readonly>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-title">
+                                Google Recaptcha
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="publickey">Public</label>
+                                    <input type="text" class="form-control" id="publickey" name="publickey"
+                                        placeholder="{{ 'website.publickey'|GetConfig }}"
+                                        value="{{ 'website.publickey'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="privatekey">Private</label>
+                                    <input type="text" class="form-control" id="privatekey" name="privatekey"
+                                        placeholder="{{ 'website.privatekey'|GetConfig }}"
+                                        value="{{ 'website.privatekey'|GetConfig }}">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-title">
+                                Server
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="salt">Salt</label>
+                                    <input type="text" class="form-control" id="salt" name="salt"
+                                        placeholder="{{ 'server.salt'|GetConfig }}"
+                                        value="{{ 'server.salt'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="ip">IP</label>
+                                    <input type="text" class="form-control" id="ip" name="ip"
+                                        placeholder="{{ 'server.ip'|GetConfig }}" value="{{ 'server.ip'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="port">Port</label>
+                                    <input type="text" class="form-control" id="port" name="port"
+                                        placeholder="{{ 'server.port'|GetConfig }}"
+                                        value="{{ 'server.port'|GetConfig }}">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="database-api" role="tabpanel" aria-labelledby="database-api-tab">
+                            <div class="card-title">
+                                Database
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="server">Server</label>
+                                    <input type="text" class="form-control" id="server" name="server"
+                                        placeholder="{{ 'database.server'|GetConfig }}"
+                                        value="{{ 'database.server'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="username">User</label>
+                                    <input type="text" class="form-control" id="username" name="username"
+                                        placeholder="{{ 'database.username'|GetConfig }}"
+                                        value="{{ 'database.username'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        placeholder="{{ 'database.password'|GetConfig }}"
+                                        value="{{ 'database.password'|GetConfig }}">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <label for="account_dbf">Account DBF</label>
+                                    <input type="text" class="form-control" id="account_dbf" name="account_dbf"
+                                        placeholder="{{ 'database.account_dbf'|GetConfig }}"
+                                        value="{{ 'database.account_dbf'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="character_dbf">Character DBF</label>
+                                    <input type="text" class="form-control" id="character_dbf" name="character_dbf"
+                                        placeholder="{{ 'database.character_dbf'|GetConfig }}"
+                                        value="{{ 'database.character_dbf'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="logging_dbf">Logging DBF</label>
+                                    <input type="text" class="form-control" id="logging_dbf" name="logging_dbf"
+                                        placeholder="{{ 'database.logging_dbf'|GetConfig }}"
+                                        value="{{ 'database.logging_dbf'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="website_dbf">Web DBF</label>
+                                    <input type="text" class="form-control" id="website_dbf" name="website_dbf"
+                                        placeholder="{{ 'database.website_dbf'|GetConfig }}"
+                                        value="{{ 'database.website_dbf'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="item_dbf">Item DBF</label>
+                                    <input type="text" class="form-control" id="item_dbf" name="item_dbf"
+                                        placeholder="{{ 'database.item_dbf'|GetConfig }}"
+                                        value="{{ 'database.item_dbf'|GetConfig }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="shop-api" role="tabpanel" aria-labelledby="shop-api-tab">
+                            <div class="card-title">
+                                Shop
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="param1">Server Parameter 1</label>
+                                    <input type="text" class="form-control" id="param1" name="param1"
+                                        placeholder="{{ 'shop.param1'|GetConfig }}"
+                                        value="{{ 'shop.param1'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="param2">Server Parameter 1</label>
+                                    <input type="text" class="form-control" id="param2" name="param2"
+                                        placeholder="{{ 'shop.param2'|GetConfig }}"
+                                        value="{{ 'shop.param2'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="max_shoppingcard">Max Shopping Card Items</label>
+                                    <input type="text" class="form-control" id="max_shoppingcard"
+                                        name="max_shoppingcard" placeholder="{{ 'shop.max_shoppingcard'|GetConfig }}"
+                                        value="{{ 'shop.max_shoppingcard'|GetConfig }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="security-api" role="tabpanel" aria-labelledby="security-api-tab">
+                            <div class="card-title">
+                                Security
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="admin">Admin</label>
+                                    <input type="text" class="form-control" id="admin" name="admin"
+                                        placeholder="{{ 'security.admin'|GetConfig }}"
+                                        value="{{ 'security.admin'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="gamemaster">Gamemaster / Support</label>
+                                    <input type="text" class="form-control" id="gamemaster" name="gamemaster"
+                                        placeholder="{{ 'security.gamemaster'|GetConfig }}"
+                                        value="{{ 'security.gamemaster'|GetConfig }}">
+                                </div>
+                                <div class="col">
+                                    <label for="user">User</label>
+                                    <input type="text" class="form-control" id="user" name="user"
+                                        placeholder="{{ 'security.user'|GetConfig }}"
+                                        value="{{ 'security.user'|GetConfig }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="vote-api" role="tabpanel" aria-labelledby="vote-api-tab">
+                            <div class="card-title">
+                                Vote
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="reward">Vote Reward</label>
+                                    <input type="text" class="form-control" id="reward" name="reward"
+                                        placeholder="{{ 'vote.reward'|GetConfig }}"
+                                        value="{{ 'vote.reward'|GetConfig }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="discord-api" role="tabpanel" aria-labelledby="discord-api-tab">
+                            <div class="card-title">
+                                Discord
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="discord">Discord Webhook Link</label>
+                                    <input type="text" class="form-control" id="discord" name="discord"
+                                        placeholder="{{ 'website.discord'|GetConfig }}"
+                                        value="{{ 'website.discord'|GetConfig }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="account-api" role="tabpanel" aria-labelledby="account-api-tab">
+                            <div class="card-title">
+                                Account
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="max_ingame_accounts">Ingame Account Limit</label>
+                                    <input type="text" class="form-control" id="max_ingame_accounts"
+                                        name="max_ingame_accounts"
+                                        placeholder="{{ 'website.max_ingame_accounts'|GetConfig }}"
+                                        value="{{ 'website.max_ingame_accounts'|GetConfig }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% else %}
+<div class="row">
+    <div class="col">
+        <div class="alert alert-danger">
+            <b>Du bist kein Admin</b><br>
+            <p>Nur Admins haben auf diese Seite zugriff.</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

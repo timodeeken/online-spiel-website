@@ -1,0 +1,48 @@
+{% extends "index.twig" %} {% block title %} Ranking {% endblock %} {% block
+content %}
+<div class="col">
+  <div class="card card-body">
+    <div class="card-title">User Ranking</div>
+    <div class="row mt-5">
+      <div class="col">
+        <div class="table-responsive">
+          <table class="table align-middle text-center" id="ranking">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Level</th>
+                <th scope="col">Job</th>
+                <th scope="col">
+                  Playtime <small style="font-size: 8px">(hh/mm/ss)</small>
+                </th>
+                <th scope="col">Created At</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+              <tr class="align-middle {% if user.MultiServer == 1 %}table-success{% endif %}">
+                <td>{{ loop.index }}</td>
+                <td>{{ user.m_szName }}</td>
+                <td>{{ user.m_nLevel }}</td>
+                <td data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ user.m_nJob | flyff_class }}">
+                  <img src="{{ user.m_nJob | flyff_class_img }}" alt="" height="32px" width="32px" />
+                </td>
+                <td>{{ user.TotalPlayTime | playtime }}</td>
+                <td>{{user.CreateTime|date('M d, Y')}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block footer %}
+
+<script>
+  //const dataTable = new simpleDatatables.DataTable("#ranking")
+</script>
+{% endblock %}

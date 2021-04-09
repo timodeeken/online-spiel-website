@@ -1,0 +1,286 @@
+{% extends "Admin/index.twig" %}{% block title %}
+User
+{% endblock %}
+{% block header %}
+{% if not character[0].m_szName == '' %}
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class="row mb-2 mb-xl-3">
+    <div class="col-auto d-none d-sm-block">
+        <h4><i class="fas fa-users"></i> <strong>Gamemaster</strong> Dashboard</h4>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <form action="/panel/gamemaster" method="post">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label for="charactersearch">Charcater Name</label>
+                            <input type="text" name="charactersearch" id="charactersearch" class="form-control">
+                            <p class="mt-2"><small class="text-danger font-italic">Suche kann je nach Serverauslastung und Datenbankeinträgen länger dauern</small></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    Character - {{character[0].m_szName}}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {% for char in character %}
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Account
+                                        <span class="badge bg-primary rounded-pill">{{char.account}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Name
+                                        <span class="badge bg-warning  rounded-pill">{{char.m_szName}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Level
+                                        <span class="badge bg-primary rounded-pill">{{char.m_nLevel}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Status
+                                        <span class="badge bg-primary rounded-pill">{{char.MultiServer|OnlineStatus}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Player ID
+                                        <span class="badge bg-primary rounded-pill">{{char.m_idPlayer}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Slot
+                                        <span class="badge bg-primary rounded-pill">{{char.playerslot}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Currently World
+                                        <span class="badge bg-primary rounded-pill">{{char.dwWorldID}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Position X
+                                        <span class="badge bg-primary  rounded-pill">{{char.m_vPos_x}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Position Y
+                                        <span class="badge bg-primary rounded-pill">{{char.m_vPos_y}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Position Z
+                                        <span class="badge bg-primary rounded-pill">{{char.m_vPos_z}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Base STR
+                                        <span class="badge bg-primary rounded-pill">{{char.m_nStr}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Base STA
+                                        <span class="badge bg-primary  rounded-pill">{{char.m_nSta}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Base DEX
+                                        <span class="badge bg-primary rounded-pill">{{char.m_nDex}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Base INT
+                                        <span class="badge bg-primary rounded-pill">{{char.m_nInt}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Currently Inventory Penya
+                                        <span class="badge bg-primary rounded-pill">{{char.m_dwGold}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Job
+                                        <span class="badge bg-primary  rounded-pill">{{char.m_nJob|flyff_class}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Authority
+                                        <span class="badge bg-primary rounded-pill">{{char.m_chAuthority}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Playtime
+                                        <span
+                                            class="badge bg-primary rounded-pill">{{char.TotalPlayTime|playtime}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="inventory-tab" data-bs-toggle="tab" href="#inventory"
+                                            role="tab" aria-controls="inventory" aria-selected="true">Inventroy</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="trade-tab" data-bs-toggle="tab" href="#trade"
+                                            role="tab" aria-controls="trade" aria-selected="false">Trade Logs</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="commands-tab" data-bs-toggle="tab" href="#commands"
+                                            role="tab" aria-controls="commands" aria-selected="false">Command Logs</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="logins-tab" data-bs-toggle="tab" href="#logins"
+                                            role="tab" aria-controls="logins" aria-selected="false">Logins</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="levelup-tab" data-bs-toggle="tab" href="#levelup"
+                                            role="tab" aria-controls="levelup" aria-selected="false">Level Up Logs</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade active show" id="inventory" role="tabpanel"
+                                        aria-labelledby="inventory-tab">
+                                        <div class="alert alert-danger">
+                                            <b>Fehler</b>
+                                            <p class="card-text">Keine Daten vorhanden oder diese Feature steht derzeit nicht zur Verfügung.</p>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="trade" role="tabpanel"
+                                        aria-labelledby="trade-tab">
+                                        <div class="alert alert-danger">
+                                            <b>Fehler</b>
+                                            <p class="card-text">Keine Daten vorhanden oder diese Feature steht derzeit nicht zur Verfügung.</p>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="commands" role="tabpanel"
+                                        aria-labelledby="commands-tab">
+                                        <table class="table" id="commandsTable">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Command</th>
+                                                <th scope="col">Datum</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for command in commands %}
+                                                    <tr>
+                                                        <td>{{ loop.index }}</td>
+                                                        <td>{{ command.m_szWords }}</td>
+                                                        <td>{{ command.s_date|flyfftime|date('d. M Y H:i') }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="logins" role="tabpanel"
+                                        aria-labelledby="logins-tab">
+                                        <table class="table" id="login">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">World ID</th>
+                                                <th scope="col">Startzeit</th>
+                                                <th scope="col">Endzeit</th>
+                                                <th scope="col">Login IP</th>
+                                                <th scope="col">Login Account</th>
+                                                <th scope="col">Character Level</th>
+                                                <th scope="col">Character Klasse</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for login in logins %}
+                                                    <tr>
+                                                        <td>{{ loop.index }}</td>
+                                                        <td>{{ login.dwWorldID }}</td>
+                                                        <td>{{ login.Start_Time|flyfftime|date('d. M Y H:i') }}</td>
+                                                        <td>{{ login.End_Time|flyfftime|date('d. M Y H:i') }}</td>
+                                                        <td>{{ login.remoteIP }}</td>
+                                                        <td>{{ login.account }}</td>
+                                                        <td>{{ login.CharLevel }}</td>
+                                                        <td><img src="{{login.Job|flyff_class_img}}" alt="" height="32px" width="32px" ata-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ login.Job|flyff_class }}"></td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="levelup" role="tabpanel"
+                                        aria-labelledby="levelup-tab">
+                                        <table class="table" id="levelups">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Level</th>
+                                                <th scope="col">Job</th>
+                                                <th scope="col">STR</th>
+                                                <th scope="col">STA</th>
+                                                <th scope="col">DEX</th>
+                                                <th scope="col">INT</th>
+                                                <th scope="col">Gold</th>
+                                                <th scope="col">Playtime</th>
+                                                <th scope="col">Date</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for levelup in levelups %}
+                                                    <tr>
+                                                        <td>{{ loop.index }}</td>
+                                                        <td>{{ levelup.m_nLevel }}</td>
+                                                        <td>{{ levelup.m_nJob|flyff_class }}</td>
+                                                        <td>{{ levelup.m_nStr }}</td>
+                                                        <td>{{ levelup.m_nSta }}</td>
+                                                        <td>{{ levelup.m_nDex }}</td>
+                                                        <td>{{ levelup.m_nInt }}</td>
+                                                        <td>{{ levelup.m_dwGold }}</td>
+                                                        <td>{{ levelup.TotalPlayTime|playtime }}</td>
+                                                        <td>{{ levelup.s_date|flyfftime|date('d. M Y H:i') }}</td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="alert alert-danger">
+                                <b>Kein Character gefunden</b><br>
+                                <p>Endweder hast du noch nach keinem Character gesucht oder es wurde keine gefunden.</p>
+                            </div>
+                            {% endfor %}
+                            <pre>
+
+                        </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {% if not character[0].m_szName == '' %}
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <script>
+        const commands = new simpleDatatables.DataTable('#commandsTable');
+        const login = new simpleDatatables.DataTable("#login");
+        const levelups = new simpleDatatables.DataTable('#levelups');
+    </script>
+    {% endif %}
+{% endblock %}

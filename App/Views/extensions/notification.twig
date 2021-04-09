@@ -1,0 +1,5 @@
+{% for currentNotification in notifications %}
+<div class="notification" data-notification-type="{{currentNotification.type}}">
+    {{currentNotification.message}}
+</div>
+{% endfor %}

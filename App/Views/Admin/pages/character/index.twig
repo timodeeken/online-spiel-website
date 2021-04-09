@@ -1,0 +1,192 @@
+{% extends "Admin/index.twig" %}{% block title %}
+User
+{% endblock %}
+{% block header %}
+{% if not character[0].m_szName == '' %}
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+{% endif %}
+{% endblock %}
+{% block content %}
+<div class="row mb-2 mb-xl-3">
+    <div class="col-auto d-none d-sm-block">
+        <h4><i class="fas fa-users"></i> <strong>Character</strong> Dashboard</h4>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <form action="/panel/character" method="post">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label for="charactersearch">Charcater Name</label>
+                            <input type="text" name="charactersearch" id="charactersearch" class="form-control">
+                            <p class="mt-2"><small class="text-danger font-italic">Suche kann je nach Serverauslastung
+                                    und Datenbankeinträgen länger dauern</small></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    Character - {{character[0].m_szName}}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {% for char in character %}
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Account
+                                        <span class="badge bg-primary rounded-pill">{{char.account}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Name
+                                        <span class="badge bg-warning  rounded-pill">{{char.m_szName}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Level
+                                        <span class="badge bg-primary rounded-pill">{{char.m_nLevel}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Status
+                                        <span
+                                            class="badge bg-primary rounded-pill">{{char.MultiServer|OnlineStatus}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Player ID
+                                        <span class="badge bg-primary rounded-pill">{{char.m_idPlayer}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Slot
+                                        <span class="badge bg-primary rounded-pill">{{char.playerslot}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Currently World
+                                        <span class="badge bg-primary rounded-pill">{{char.dwWorldID}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Position X
+                                        <span class="badge bg-primary  rounded-pill">{{char.m_vPos_x}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Position Y
+                                        <span class="badge bg-primary rounded-pill">{{char.m_vPos_y}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Position Z
+                                        <span class="badge bg-primary rounded-pill">{{char.m_vPos_z}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Base STR
+                                        <span class="badge bg-primary rounded-pill">{{char.m_nStr}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Base STA
+                                        <span class="badge bg-primary  rounded-pill">{{char.m_nSta}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Base DEX
+                                        <span class="badge bg-primary rounded-pill">{{char.m_nDex}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Base INT
+                                        <span class="badge bg-primary rounded-pill">{{char.m_nInt}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Currently Inventory Penya
+                                        <span class="badge bg-primary rounded-pill">{{char.m_dwGold}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Job
+                                        <span class="badge bg-primary  rounded-pill">{{char.m_nJob|flyff_class}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Authority
+                                        <span class="badge bg-primary rounded-pill">{{char.m_chAuthority}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        Playtime
+                                        <span
+                                            class="badge bg-primary rounded-pill">{{char.TotalPlayTime|playtime}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                            data-bs-target="#pills-home" type="button" role="tab"
+                                            aria-controls="pills-home" aria-selected="true"><i class="fas fa-user"></i>
+                                            <br>Inventory</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                                            data-bs-target="#pills-profile" type="button" role="tab"
+                                            aria-controls="pills-profile" aria-selected="false"><i
+                                                class="fas fa-sign-in-alt"></i> <br>Login Logs</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                            data-bs-target="#pills-contact" type="button" role="tab"
+                                            aria-controls="pills-contact" aria-selected="false"><i
+                                                class="fas fa-shopping-cart"></i> <br>Contact</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                        aria-labelledby="pills-home-tab">...</div>
+                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                        aria-labelledby="pills-profile-tab">...</div>
+                                    <div class="tab-pane fade" id="pills-contact" role="tabpanel"
+                                        aria-labelledby="pills-contact-tab">...</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-danger">
+                            <b>Kein Character gefunden</b><br>
+                            <p>Endweder hast du noch nach keinem Character gesucht oder es wurde keine gefunden.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    {% block footer %}
+    {% if not character[0].m_szName == '' %}
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <script>
+        const drop = new simpleDatatables.DataTable('#drop');
+        const login = new simpleDatatables.DataTable("#login");
+        const levelups = new simpleDatatables.DataTable('#levelups');
+    </script>
+    {% endif %}
+    {% endblock %}

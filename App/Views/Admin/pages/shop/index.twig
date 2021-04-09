@@ -1,0 +1,50 @@
+{% extends "Admin/index.twig" %}{% block title %}
+Shop
+{% endblock %}
+{% block header %}
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+{% endblock %}
+{% block content %}
+<div class="row mb-2 mb-xl-3">
+    <div class="col-auto d-none d-sm-block">
+        <h4><i class="fab fa-shopify"></i> <strong>Shop</strong> Dashboard</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <table class="table" id="items">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Item Icon</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for item in items %}
+                          
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ item.szName }}</td>
+                                <td>{{ item.szIcon }}</td>
+                                <td><button onclick="" class="btn btn-sm btn-success">Add</button></td>
+                            </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+<script>
+    const dataTable = new simpleDatatables.DataTable("#items")
+</script>
+{% endblock %}

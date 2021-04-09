@@ -1,0 +1,63 @@
+{% extends "index.twig" %} {% block title %} Home {% endblock %} {% block
+content %} {% include "extensions/notification.twig" %}
+<div class="col">
+  <div class="row justify-content-center">
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Team</h5>
+          <p class="card-text">
+            All team members will be happy to help you with any questions
+          </p>
+          <a href="/support/team" class="btn btn-primary">Open Team</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Ticketsystem</h5>
+          <p class="card-text">
+            If you have any questions or problems, you are welcome to create a ticket
+            here
+          </p>
+          <a href="/support/ticketsystem" class="btn btn-primary">Open Ticketsystem</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">FAQ's</h5>
+          <p class="card-text">
+            Here you can find all questions and their answers. <br>Please have a look here before you contact support
+          </p>
+          <a href="/support/faq" class="btn btn-primary">Open FAQ</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Rules</h5>
+          <p class="card-text">
+            Here you can find all the rules on our server. <br>Please stick to this
+          </p>
+          <a href="#" class="btn btn-primary">Open Rules</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Jobs</h5>
+          <p class="card-text">
+            Here we present all Jobs for our server. <br>You can also apply here directly.
+          </p>
+          <a href="#" class="btn btn-primary">Open Jobs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

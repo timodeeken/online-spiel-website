@@ -1,0 +1,79 @@
+{% extends "index.twig" %}
+{% block title %}
+    Beta Register
+{% endblock %}
+
+{% block content %}
+{% include "extensions/notification.twig" %}
+<div class="col">
+  <div class="card card-body">
+        <div class="card-title">
+            Register
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="POST" action="/">
+                    <div class="mb-3">
+                      <label for="username" class="form-label">Account ID</label>
+                      <input type="text" class="form-control" id="username" name="username" minlength="6" maxlength="16" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nickname" class="form-label">Nickname</label>
+                        <input type="text" class="form-control" name="nickname">
+                      </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                               <label for="username" class="form-label">Password</label>
+                              <input type="password" class="form-control" name="password" minlength="6" maxlength="16" required>
+                            </div>
+                            <div class="col">
+                                <label for="username" class="form-label">Password Repeat</label>
+                              <input type="password" class="form-control" name="password_repeat" minlength="6" maxlength="16" required>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                               <label for="email" class="form-label">E-Mail</label>
+                              <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="col">
+                                <label for="username" class="form-label">E-Mail Repeat</label>
+                              <input type="email" class="form-control" name="email_repeat" required>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col">
+                               <label for="email" class="form-label">Secret Question</label>
+                               <select id="inputState" name="question" class="form-select" required>
+                                <option selected>Choose</option>
+                                <option>Dein favorisiertes Schulfach ist ...?</option>
+                                <option>Dein Geburtsort war ...?</option>
+                                <option>Dein Lieblingsverein ist ...?</option>
+                                <option>Der Name deines ersten Haustieres war ...?</option>
+                                <option>Dein erstes Computerspiel war ...?</option>
+                                <option>Deine absolute Lieblingsfarbe ist ...?</option>
+                              </select>
+                            </div>
+                            <div class="col">
+                                <label for="username" class="form-label">Secret Answer</label>
+                              <input type="password" class="form-control" name="answer" required>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Birthday</label>
+                        <input type="date" class="form-control" name="birthday" required>
+                      </div>
+                      <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+                    <button type="submit" class="btn btn-primary" >Register Now</button>
+                  </form>
+            </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

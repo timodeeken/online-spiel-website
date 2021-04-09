@@ -1,0 +1,94 @@
+{% extends "index.twig" %} {% block title %} Ticketsystem {% endblock %} {%
+block content %} {% if IsUser %}
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col">
+          <a href="/support/ticketsystem" class="btn btn-sm btn-primary"
+            >Overview</a
+          >
+        </div>
+      </div>
+      <div class="card-title">
+        Answer Ticket - Ticket: <u>{{ answers[0].ticket_title }}</u>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <p class="card-text" style="font-size: 11px">Your Ticket Message:</p>
+          <p class="card">
+            <code>{{ answers[0].ticket_text | raw }}</code>
+          </p>
+        </div>
+      </div>
+      <hr />
+      <div class="row mb-3">
+        <div class="col">
+          <div
+            class="card"
+            style="height: 200px; max-height: 200px; overflow-y: auto"
+          >
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+            skdjalsdjasdasdad<br />
+          </div>
+        </div>
+      </div>
+      <form
+        action="/support/ticketsystem/answer/{{ answers[0].ticket_uuid }}"
+        method="post"
+      >
+        <div class="row mb-3">
+          <div class="col">
+            <label for="ticket_answer">Message:</label>
+            <textarea
+              name="ticket_answer"
+              id="ticket_answer"
+              class="form-control"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary">Send</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% else %} {% include "extensions/not_loggedIn.twig" %} {% endif %} {% endblock
+%}

@@ -1,0 +1,10 @@
+{% extends "index.twig" %}
+{% block title %}
+    404 - Page not found
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-danger" role="alert">
+        404 - Page not Found! {% if IsUser %}<a href="/accountpanel" class="alert-link">back to Accountpanel</a>{% else %}<a href="/" class="alert-link">Home</a> {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "index.twig" %} {% block title %} Ticketsystem - New {% endblock %}
+{% block content %} {% if IsUser %}
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col">
+          <a href="/support/ticketsystem" class="btn btn-sm btn-primary"
+            >Overview</a
+          >
+        </div>
+      </div>
+      <div class="card-title">Ticket System</div>
+      <div class="row mt-4 mb-3">
+        <div class="col">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/support/ticketsystem">Open Tickets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/support/ticketsystem/close"
+                >Closed Tickets</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/support/ticketsystem/add"
+                >New Ticket</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <form
+            action="/support/ticketsystem/add"
+            enctype="multipart/form-data"
+            method="post"
+          >
+            <div class="row mb-3">
+              <div class="col">
+                <label for="ticket_title">Ticket Title</label>
+                <input
+                  type="text"
+                  name="ticket_title"
+                  id="ticket_title"
+                  class="form-control"
+                  required
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="ticket_category">Ticket Category</label>
+                <select
+                  name="ticket_category"
+                  id="ticket_category"
+                  class="form-control"
+                  required
+                >
+                  <option value="1">Mein Account ist gesperrt</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="ticket_text">Ticket Text</label>
+                <textarea
+                  name="ticket_text"
+                  id="ticket_text"
+                  class="form-control"
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="ticket_attachment">Attachment</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  name="ticket_attachment"
+                  id="ticket_attachment"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-1 ml-auto">
+                <button type="submit" class="btn btn-primary">Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% else %} {% include "extensions/not_loggedIn.twig" %} {% endif %} {% endblock
+%}
