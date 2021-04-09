@@ -10,4 +10,4 @@ Verwendete Frameworks:
 - YAML als Config File
 
 Hier habe ich die ersten erfahrungen mit Docker gemacht.
-Leider funktioniert Docker noch nicht richtig auf dem neuen MacBook mit dem M1 Chipsatz.
+Leider funktioniert Docker noch nicht richtig auf dem neuen MacBook mit M1 Chipsatz.
