@@ -4,8 +4,8 @@ website:
     view: App/Views
     controller: App/Controllers
     routes: Routes
-    publickey: 6LfN_cEZAAAAAOUJe4_WVBNm_lRz4TxHg_Jru21V
-    privatekey: 6LfN_cEZAAAAAMZNEgyfnuA8ByWjiFW42fE_EsSM
+    publickey: 
+    privatekey: 
     discord: https://discord.com/api/webhooks/811558031560671263/Dbzt9zB6mSKeUTG8xp3MRvUR-poXUYtVd0tsk-XDAol_FKa1GRFh6AhqIrSPJRhyWEN5
     max_ingame_accounts: 10
     rates:
@@ -16,9 +16,9 @@ website:
         user_online: true
         user_peak: true
 database:
-    server: 62.141.36.118\SQLEXPRESS
+    server: 
     username: Venom
-    password: AtlantisVenom2021
+    password: 
     account_dbf: ACCOUNT_DBF
     character_dbf: CHARACTER_01_DBF
     logging_dbf: LOGGING_01_DBF
